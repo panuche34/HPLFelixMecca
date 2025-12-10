@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Usuário";
+}
+
+<div id="div-content" class="card shadow-sm sg-content">
+    <div class="card-body">
+        <div class="row justify-content-center">
+
+            @await Component.InvokeAsync("CardModule", new { controllerName = "Dependant", title = "Dependentes", icon = "fa-solid fa-users" })
+            @await Component.InvokeAsync("CardModule", new { controllerName = "Info", title = "Informações", icon = "fa-solid fa-people-carry-box" })
+
+        </div>
+    </div>
+</div>

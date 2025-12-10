@@ -2,7 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="div-content" class="card shadow-sm sg-content">
+    @* <div class="card-body"> *@
+        <div class="row justify-content-center">
+
+            @await Component.InvokeAsync("CardModule", new { controllerName = "User", title = "Usuários", icon = "fa-solid fa-users" })
+            @await Component.InvokeAsync("CardModule", new { controllerName = "Acompanhamento", title = "Acompanhamento", icon = "fa-solid fa-people-carry-box" })
+
+        </div>
+    @* </div> *@
 </div>

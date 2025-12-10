@@ -1,9 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HPLFelixMecca", "HPLFelixMecca.csproj", "{C48CA2F5-2F26-41E1-A178-9C9BE4E0C9BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "..\Core\Core.csproj", "{85EBA7BB-A01A-42BC-8A5B-59C69545EAC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "..\Application\Application.csproj", "{5F2101A8-615B-4CE9-AE72-6C6432F116A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastruture", "..\Infrastruture\Infrastruture.csproj", "{8BD7AB26-BD0A-4ABB-AAFC-1C03079FFC9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "..\Util\Util.csproj", "{5B79A248-4F5F-4D5F-97C3-01EB9097E77E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstantManager", "..\ConstantManager\ConstantManager.csproj", "{3529F311-44A9-412D-920C-1FFC2F22A189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,32 @@ Global
 		{C48CA2F5-2F26-41E1-A178-9C9BE4E0C9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48CA2F5-2F26-41E1-A178-9C9BE4E0C9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C48CA2F5-2F26-41E1-A178-9C9BE4E0C9BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85EBA7BB-A01A-42BC-8A5B-59C69545EAC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85EBA7BB-A01A-42BC-8A5B-59C69545EAC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85EBA7BB-A01A-42BC-8A5B-59C69545EAC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85EBA7BB-A01A-42BC-8A5B-59C69545EAC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F2101A8-615B-4CE9-AE72-6C6432F116A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F2101A8-615B-4CE9-AE72-6C6432F116A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F2101A8-615B-4CE9-AE72-6C6432F116A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F2101A8-615B-4CE9-AE72-6C6432F116A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BD7AB26-BD0A-4ABB-AAFC-1C03079FFC9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD7AB26-BD0A-4ABB-AAFC-1C03079FFC9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD7AB26-BD0A-4ABB-AAFC-1C03079FFC9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD7AB26-BD0A-4ABB-AAFC-1C03079FFC9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B79A248-4F5F-4D5F-97C3-01EB9097E77E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B79A248-4F5F-4D5F-97C3-01EB9097E77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B79A248-4F5F-4D5F-97C3-01EB9097E77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B79A248-4F5F-4D5F-97C3-01EB9097E77E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3529F311-44A9-412D-920C-1FFC2F22A189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3529F311-44A9-412D-920C-1FFC2F22A189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3529F311-44A9-412D-920C-1FFC2F22A189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3529F311-44A9-412D-920C-1FFC2F22A189}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C48CA2F5-2F26-41E1-A178-9C9BE4E0C9BD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2B2B1B10-7E03-443A-B73B-D0FD6103C090}

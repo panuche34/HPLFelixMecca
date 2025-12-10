@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\HPLFelixMecca\\HPLFelixMecca.csproj",
+      "projectUniqueName": "E:\\Projetos\\HPLFelixMecca\\HPLFelixMecca.csproj",
       "projectName": "HPLFelixMecca",
-      "projectPath": "C:\\Projetos\\HPLFelixMecca\\HPLFelixMecca.csproj",
+      "projectPath": "E:\\Projetos\\HPLFelixMecca\\HPLFelixMecca.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\HPLFelixMecca\\obj\\",
+      "outputPath": "E:\\Projetos\\HPLFelixMecca\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -75,7 +75,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
