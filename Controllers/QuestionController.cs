@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using HPLFelixMecca.Models;
+using Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HPLFelixMecca.Controllers

@@ -1,4 +1,4 @@
-namespace HPLFelixMecca.Models
+namespace WebApp.Models
 {
     public class ErrorViewModel
     {
