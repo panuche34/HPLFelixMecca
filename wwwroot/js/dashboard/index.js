@@ -1,8 +1,8 @@
-﻿class DependantIndex {
+﻿class DependentIndex {
     constructor() {
-        this._CONTROLLER_NAME = 'Dependant'
+        this._CONTROLLER_NAME = 'Children'
         this._table = null;
-        this._initTable();
+        //this._initTable();
     }
 
     _initTable() {
@@ -11,7 +11,7 @@
             searching: true,
             columnDefs: [
                 { targets: [0], visible: false },
-                { targets: [1, 2, 3, 4, 5,6], className: 'dt-center' }
+                { targets: [1, 2, 3, 4, 5], className: 'dt-center' }
             ],
             order: [2, 'asc'],
             serverSide: true,
@@ -59,4 +59,4 @@
         }
     }
 }
-const controller = new DependantIndex();
+const controller = new DependentIndex();

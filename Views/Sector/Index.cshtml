@@ -1,0 +1,57 @@
+﻿@* @{
+    ViewData["Title"] = "Setores";
+}
+
+<div class="div-title-page">
+    <h4 class="m-0">Setores</h4>
+    <div class="actions-page">
+        @if (ViewBag.CanView is bool cv && !cv)
+        {
+            <a href="/Sector/Crud" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Incluir">
+                <i class="fa-solid fa-plus-circle"></i>
+            <span class="d-none d-sm-inline">Incluir</span>
+            </a>
+        }
+    </div>
+</div>
+<div class="div-page-list">
+    <div class="table-responsive overflow-hidden">
+        <table id="tbl-items" class="table table-striped table-bordered w-100 m-0">
+            <thead>
+                <tr>
+                    <th property="Id" width="70">Cód.</th>
+                    <th property="Buttons" width="100" class="text-center">Ações</th>
+                    <th property="Name">Nome</th>
+                    <th property="MaxTime">Tempo Máximo</th>
+                    <th property="LimitTime">Tempo Limite</th>
+                    <th property="UserName">Responsável</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+@await Component.InvokeAsync("Modal", new { id = "item", type = "delete" })
+
+@section Scripts {
+    <environment names="Development">
+        <script src="~/js/common/table_gr.js" asp-append-version="true"></script>
+        <script src="~/js/sector/index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Production">
+        <script src="~/js/common/table_gr.min.js" asp-append-version="true"></script>
+        <script src="~/js/sector/index.min.js" asp-append-version="true"></script>
+    </environment>
+}
+ *@

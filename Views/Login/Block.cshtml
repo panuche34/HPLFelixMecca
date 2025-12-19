@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_LayoutLogin";
+}
+
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
+        <img src="~/img/CataVento(logo_escrita_V).png" alt="Logo" class="login-logo">
+        <h3 class="card-title text-center mb-4">Seja bem-vindo (ADM)</h3>
+        <form asp-action="SignIn" method="post">
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Usuário</label>
+                <input type="text" value="@Model.UserName" class="form-control" id="UserName" name="UserName" aria-describedby="emailHelp" placeholder="Digite seu usuário">
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Senha</label>
+                <input type="password" value="@Model.Password" class="form-control" id="Password" name="Password" placeholder="Senha">
+            </div>
+            @* <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div> *@
+            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            @if ((Model != null) && (!string.IsNullOrWhiteSpace(Model.ErrorMsg)))
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong style="font-size: 10px">@Model.ErrorMsg</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+        </form>
+        @* <a href="/Login/ForgotPassword" class="w-100 text-center">Esqueci minha senha</a> *@
+        @* <div class="mt-3 text-center">
+            <a href="#">Forgot your password?</a>
+        </div> *@
+    </div>
+</div>

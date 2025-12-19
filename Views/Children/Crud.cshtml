@@ -1,0 +1,65 @@
+﻿@using Core.ViewModel
+@model ChildrenVM 
+@* @using Core.Enumerators *@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Incluir/Editar";
+}
+
+<form id="frm-crud" class="frm-crud" asp-action="Crud" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" id="btnSubmit" class="d-none"></button>
+    <div class="div-title-page">
+        <h4 class="m-0">Cadastrar nova Criança</h4>
+        <div class="actions-page">
+              
+            <button onclick="controller.save()" type="submit" class="btn btn-primary me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Salvar">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span class="d-none d-sm-inline">Salvar</span>
+            </button>
+            
+            <a href="/Children" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="d-none d-sm-inline">Voltar</span>
+            </a>
+        </div>
+    </div>
+    <div class="div-page-crud">
+        <div class="col-lg-12 col-md-10 col-sm-12 col-12 d-flex align-items-center">
+            <div class="row g-2 m-0 w-100">
+
+                <div class="col-12">
+                    <label class="form-label">
+                        Nome
+                    </label>
+                    <input asp-for="Name"
+                           maxlength="100"
+                           class="form-control"
+                           required
+                           valid-message="Nome é obrigatório"
+                           placeholder="Digite o nome aqui..." />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">
+                        Data de Nascimento
+                    </label>
+                    <input asp-for="BirthDate"
+                           type="date"
+                           class="form-control"
+                           />
+                </div>
+                            
+                <div class="w-100"></div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <environment names="Development">
+        <script src="~/js/children/crud.js"></script>
+    </environment>
+    <environment names="Production">
+        <script src="~/js/children/crud.min.js"></script>
+    </environment>
+}

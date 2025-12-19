@@ -10,13 +10,13 @@ using ConstantManager.Messages;
 
 namespace HPLFelixMecca.Controllers
 {
-    public class DependentController : Controller
+    public class ChildrenController : Controller
     {
-        private readonly IDependentRepository _dependentRepository;
+        private readonly IChildrenRepository _childrenRepository;
 
-        public DependentController(IDependentRepository dependentRepository)
+        public ChildrenController(IChildrenRepository dependentRepository)
         {
-            _dependentRepository = dependentRepository;
+            _childrenRepository = dependentRepository;
         }
 
         public IActionResult Index()
@@ -24,18 +24,22 @@ namespace HPLFelixMecca.Controllers
             return View();
         }
 
+        public IActionResult Crud()
+        {
+            return View();
+        }
         [HttpPost]
-        public async Task<IActionResult> ListForDataTable([FromForm] DependentListVM filter)
+        public async Task<IActionResult> ListForDataTable([FromForm] ChildrenListVM filter)
         {
             try
             {
 
-                var models = await _dependentRepository.ListAsync(filter.search.value, filter.Start, filter.Length, filter.order[0]);
-                var vms = new List<DependentListVM>();
+                var models = await _childrenRepository.ListAsync(filter.search.value, filter.Start, filter.Length, filter.order[0]);
+                var vms = new List<ChildrenListVM>();
                 foreach (var model in models.Data)
                 {
 
-                    var user = await _dependentRepository.GetAsync(model.UserId);
+                    var user = await _childrenRepository.GetAsync(model.UserId);
                     // regra de botões
                     string buttons;
                     if (model.IsDeleted && !model.IsActive)
@@ -44,11 +48,13 @@ namespace HPLFelixMecca.Controllers
                         buttons = ButtonsVM.BTN_EDIT + ButtonsVM.BTN_DELETE; // acesso completo
 
 
-                    vms.Add(new DependentListVM
+                    vms.Add(new ChildrenListVM
                     {
 
                         Id = model.Id,
                         Name = model.Name,
+                        UserId = model.User.Id,
+                        
                         Buttons = buttons //(model.IsDeleted && !model.IsActive) ? ButtonsVM.BTN_REACTIVE : string.Empty
                     });
 

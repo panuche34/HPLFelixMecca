@@ -6,9 +6,10 @@
     @* <div class="card-body"> *@
         <div class="row justify-content-center">
 
-            @await Component.InvokeAsync("CardModule", new { controllerName = "User", title = "Usuários", icon = "fa-solid fa-users" })
-            @await Component.InvokeAsync("CardModule", new { controllerName = "Acompanhamento", title = "Acompanhamento", icon = "fa-solid fa-people-carry-box" })
-
+            @await Component.InvokeAsync("CardModule", new { controllerName = "Control", title = "Controle", icon = "fa-solid fa-users" })
+            @await Component.InvokeAsync("CardModule", new { controllerName = "Dashboard", title = "Acompanhamento", icon = "fa-solid fa-people-carry-box" })
+            @await Component.InvokeAsync("CardModule", new { controllerName = "Children", title = "Dependentes", icon = "fa-solid fa-users" })
+            @await Component.InvokeAsync("CardModule", new { controllerName = "User", actionName = "Minhas informações", title = "Informações", icon = "fa-solid fa-people-carry-box" })
         </div>
     @* </div> *@
 </div>

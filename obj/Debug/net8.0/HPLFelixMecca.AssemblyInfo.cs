@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HPLFelixMecca")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aac5d71f860e5bba37d64a65e52d2baa6c8a6cce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05c9423db9fc15549c3734c12b8b156d1fcdcf57")]
 [assembly: System.Reflection.AssemblyProductAttribute("HPLFelixMecca")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HPLFelixMecca")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

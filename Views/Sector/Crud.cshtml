@@ -1,0 +1,102 @@
+﻿@* @model SectorVM
+@using Core.Enumerators
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Incluir/Editar";
+}
+
+<form id="frm-crud" class="frm-crud" asp-action="Crud" method="post">
+     <input type="hidden" asp-for="Id" />
+    <input type="hidden" id="selectedSetores" name="Setores" />
+    <button type="submit" id="btnSubmit" class="d-none"></button>
+    <div class="div-title-page">
+        <h4 class="m-0">Cadastro de Setores</h4>
+        <div class="actions-page">
+            @if (!Model.justCanView)
+            {
+                <button onclick="controller.save()" type="submit" class="btn btn-primary me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Salvar">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                <span class="d-none d-sm-inline">Salvar</span>
+                </button>
+            }
+            <a href="/Sector" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="d-none d-sm-inline">Voltar</span>
+            </a>
+        </div>
+    </div>
+    <div class="div-page-crud">
+        <div class="col-lg-12 col-md-10 col-sm-12 col-12 d-flex align-items-center">
+         <div class="row g-2 m-0 w-100">
+
+                <div class="col-12">
+                    <label class="form-label">
+                        Nome
+                    </label>
+                    <input asp-for="Name"
+                           maxlength="100"
+                           class="form-control"
+                           required
+                           valid-message="Nome é obrigatório"
+                           placeholder="Digite o nome aqui..." />
+                </div>
+
+                <div>
+                    <label class="form-label">
+                        Tempo Limite (minutos)
+                    </label>
+                    <input asp-for="LimitTime"
+                           maxlength="100"
+                           class="form-control"
+                           required
+                           valid-message="Tempo é obrigatório"
+                           placeholder="Digite o tempo limite..." />
+                </div>
+
+                <div>
+                    <label class="form-label">
+                        Tempo Máximo (minutos)
+                    </label>
+                    <input asp-for="MaxTime"
+                           maxlength="100"
+                           class="form-control"
+                           required
+                           valid-message="Tempo é obrigatório"
+                           placeholder="Digite o tempo máximo..." />
+                </div>
+                
+
+                <div>
+                    <label class="form-label">
+                        Responsável
+                    </label>
+                    <select-responsable asp-for="UserId" class="form-control" gr-vl-edit="@Model.UserId"
+                    required
+                    valid-message="Responsável é obrigatório" />
+                </div>
+
+                <div>
+                    <label class="form-label">
+                        Descrição
+                    </label>
+                    <input asp-for="Remarks"
+                           maxlength="100"
+                           class="form-control"
+                           placeholder="Informações extras.." />
+                </div> 
+
+
+             <div class="w-100"></div>
+         </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+        <environment names="Development">
+            <script src="~/js/sector/crud.js"></script>
+        </environment>
+        <environment names="Production">
+                <script src="~/js/sector/crud.min.js"></script>
+        </environment>
+}
+ *@

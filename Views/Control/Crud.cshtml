@@ -1,0 +1,67 @@
+﻿@using Core.ViewModel
+@model UserVM
+@{
+    ViewData["Title"] = "Usuário";
+}
+
+<form id="frm-crud" class="frm-crud" asp-action="Crud" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" id="btnSubmit" class="d-none"></button>
+    <div class="div-title-page">
+        <h4 class="m-0">Cadastro de Usuários</h4>
+        <div class="actions-page">
+
+            <button onclick="controller.save()" type="submit" class="btn btn-primary me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Salvar">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span class="d-none d-sm-inline">Salvar</span>
+            </button>
+            
+            <a href="/User" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="d-none d-sm-inline">Voltar</span>
+            </a>
+        </div>
+    </div>
+    <div class="div-page-crud">
+            <div class="col-12">
+                <label class="form-label">
+                    Nome do usuário
+                </label>
+                <input asp-for="Name"
+                       required
+                       maxlength="50"
+                       class="form-control"
+                       valid-message="Nome é obrigatório"
+                       placeholder="Digite o nome do usuario aqui..." />
+            </div>
+
+
+            <div class="col-12">
+                <label class="form-label">
+                    E-mail
+                </label>
+                <input asp-for="Email"
+                       required
+                       maxlength="50"
+                       class="form-control"
+                       valid-message="E-mail é obrigatório"
+                       placeholder="Digite uma nova senha aqui..." />
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">
+                    Telefone
+                </label>
+                <input asp-for="Phone"
+                       required
+                       maxlength="50"
+                       class="form-control"
+                       valid-message="Telefone é obrigatório"
+                       placeholder="Digite uma nova senha aqui..." />
+            </div>
+                       
+ 
+
+    </div>
+  
+</form>

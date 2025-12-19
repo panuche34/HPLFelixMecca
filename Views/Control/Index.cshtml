@@ -1,14 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Dependentes";
+    ViewData["Title"] = "Control";
 }
 
-<div id="div-content" class="card shadow-sm sg-content">
-    <div class="card-body">
-        <div class="row justify-content-center">
+<div class="div-title-page">
+    <h4 class="m-0">Controle</h4>
+    <div class="actions-page">
 
-            
+        <a href="/Control/Crud" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Incluir">
+            <i class="fa-solid fa-plus-circle"></i>
+            <span class="d-none d-sm-inline">Novo Acesso</span>
+        </a>
 
-        </div>
     </div>
 </div>
 
@@ -20,10 +22,6 @@
                     <th property="Id" width="70">Cód.</th>
                     <th property="Buttons" width="100" class="text-center">Ações</th>
                     <th property="Name">Nome</th>
-                    <th property="BtnQ1">Quest 1</th>
-                    <th property="LastQ1">Última Resposta Q1</th>
-                    <th property="BtnQ2">Quest 2</th>
-                    <th property="LastQ1">Última Resposta Q2</th>
 
                 </tr>
             </thead>
@@ -34,10 +32,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                   
                 </tr>
             </tfoot>
         </table>
@@ -48,10 +43,10 @@
 @section Scripts {
     <environment names="Development">
         <script src="~/js/common/table_gr.js" asp-append-version="true"></script>
-        <script src="~/js/Dependant/index.js" asp-append-version="true"></script>
+        <script src="~/js/control/index.js" asp-append-version="true"></script>
     </environment>
     <environment names="Production">
         <script src="~/js/common/table_gr.min.js" asp-append-version="true"></script>
-        <script src="~/js/Dependant/index.min.js" asp-append-version="true"></script>
+        <script src="~/js/control/index.min.js" asp-append-version="true"></script>
     </environment>
 }

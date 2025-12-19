@@ -1,14 +1,74 @@
-﻿@{
+﻿@using Core.ViewModel
+@model UserVM
+@{
     ViewData["Title"] = "Usuário";
 }
 
-<div id="div-content" class="card shadow-sm sg-content">
-    <div class="card-body">
-        <div class="row justify-content-center">
-
-            @await Component.InvokeAsync("CardModule", new { controllerName = "Dependant", title = "Dependentes", icon = "fa-solid fa-users" })
-            @await Component.InvokeAsync("CardModule", new { controllerName = "Info", title = "Informações", icon = "fa-solid fa-people-carry-box" })
-
+<form id="frm-crud" class="frm-crud" asp-action="Crud" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" id="btnSubmit" class="d-none"></button>
+    <div class="div-title-page">
+        <h4 class="m-0">Cadastro de Usuários</h4>
+        <div class="actions-page">
+            <a href="/User/Crud" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Incluir">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span class="d-none d-sm-inline">Editar</span>
+            </a>
         </div>
     </div>
-</div>
+    <div class="div-page-crud">
+            <div class="col-12">
+                <label class="form-label">
+                    Nome do usuário
+                </label>
+                <input asp-for="Name"
+                       required
+                       maxlength="50"
+                       class="form-control"
+                       valid-message="Nome é obrigatório"
+                       placeholder="Digite o nome do usuario aqui..." />
+            </div>
+
+
+            <div class="col-12">
+                <label class="form-label">
+                    E-mail
+                </label>
+                <input asp-for="Email"
+                       required
+                       maxlength="50"
+                       class="form-control"
+                       valid-message="E-mail é obrigatório"
+                       placeholder="Digite uma nova senha aqui..." />
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">
+                    Telefone
+                </label>
+                <input asp-for="Phone"
+                       required
+                       maxlength="50"
+                       class="form-control"
+                       valid-message="Telefone é obrigatório"
+                       placeholder="Digite uma nova senha aqui..." />
+            </div>
+                       
+ 
+
+    </div>
+    
+</form>
+
+@await Component.InvokeAsync("Modal", new { id = "item", type = "delete" })
+
+@section Scripts {
+    <environment names="Development">
+        <script src="~/js/common/table_gr.js" asp-append-version="true"></script>
+        <script src="~/js/user/index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Production">
+        <script src="~/js/common/table_gr.min.js" asp-append-version="true"></script>
+        <script src="~/js/user/index.min.js" asp-append-version="true"></script>
+    </environment>
+}

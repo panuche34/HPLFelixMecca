@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Children";
+}
+
+<div class="div-title-page">
+    <h4 class="m-0">Dependentes</h4>
+    <div class="actions-page">
+
+            <a href="/Children/Crud" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Incluir">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span class="d-none d-sm-inline">Incluir</span>
+            </a>
+        
+    </div>
+</div>
+
+<div class="div-page-list">
+    <div class="table-responsive overflow-hidden">
+         <table id="tbl-items" class="table table-striped table-bordered w-100 m-0">
+            <thead>
+                <tr>
+                    <th property="Id" width="70">Cód.</th>
+                    <th property="Buttons" width="100" class="text-center">Ações</th>
+                    <th property="Name">Nome</th>
+                    <th property="BtnQ1">Quest 1</th>
+                    <th property="LastQ1">Última Resposta Q1</th>
+                    <th property="BtnQ2">Quest 2</th>
+                    <th property="LastQ1">Última Resposta Q2</th> 
+
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th> 
+                </tr>
+            </tfoot>
+        </table> 
+    </div>
+</div>
+@await Component.InvokeAsync("Modal", new { id = "item", type = "delete" })
+
+@section Scripts {
+    <environment names="Development">
+        <script src="~/js/common/table_gr.js" asp-append-version="true"></script>
+        <script src="~/js/children/index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Production">
+        <script src="~/js/common/table_gr.min.js" asp-append-version="true"></script>
+        <script src="~/js/children/index.min.js" asp-append-version="true"></script>
+    </environment>
+}
