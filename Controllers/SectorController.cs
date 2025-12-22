@@ -8,7 +8,7 @@
 //using Microsoft.AspNetCore.Mvc;
 //using Microsoft.EntityFrameworkCore.Diagnostics;
 
-//namespace WebApp.Adm.Controllers
+//namespace HPLFelixMecca.Controllers
 //{
 //    [Authorize]
 //    public class SectorController : ControllerBaseCore

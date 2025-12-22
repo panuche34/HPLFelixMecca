@@ -1,0 +1,25 @@
+﻿@section Styles {
+    <style >
+    /* efeito “pop” quando a doca aparece */
+    .dock-pop {
+        animation: popIn .45s ease-out;
+    }
+
+    @@keyframes popIn {
+        0% {
+            transform: scale(.8);
+            opacity: 0;
+        }
+
+        60% {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    </style>
+}

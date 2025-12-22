@@ -1,0 +1,256 @@
+﻿/* Não bloqueia rolagens verticais internas */
+html {
+    overflow-x: hidden;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-family) !important;
+    font-optical-sizing: auto;
+    font-style: normal;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: var(--primary) !important;
+    color: var(--text-color-primary) !important;
+}
+
+/* Espaço inferior por causa da navbar fixa */
+.content-main {
+    margin-top: 56px; /* altura da navbar */
+}
+
+    /* Row ocupa no mínimo a altura útil da tela */
+    .content-main > .row {
+        min-height: calc(100vh - 56px);
+    }
+
+/* === Sidebar com scroll vertical === */
+.sidebar {
+    background-color: var(--dark);
+    color: var(--text-color-primary) !important;
+    /* altura fixa em relação à janela, não ao .row */
+    height: calc(100vh - 56px); /* 56px = altura da navbar */
+
+    overflow-y: auto; /* scroll vertical dentro da sidebar */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-gutter: stable both-edges;
+    /* comportamento de largura/expansão */
+    width: 80px; /* << aumentei de 64 para 80 */
+    padding-right: 4px; /* afasta os ícones da barra de rolagem */
+    transition: width .2s ease; /* animação suave */
+}
+
+    /* wrapper interno */
+    .sidebar > .d-flex {
+        height: 100%;
+        width: 100%;
+    }
+
+/* Estilo da barra de rolagem (Firefox) */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.35) transparent;
+}
+
+    /* Estilo da barra de rolagem (Chrome/Edge/Safari) */
+    .sidebar::-webkit-scrollbar {
+        width: 6px; /* antes 8px – fica mais discreta */
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+        background-color: rgba(255,255,255,.28);
+        border-radius: 8px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+    }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(255,255,255,.45);
+        }
+
+.li-divisor {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.22);
+    margin: 8px 0;
+}
+
+.sidebar a {
+    color: var(--text-color-primary) !important;
+}
+
+.text-light-custom {
+    color: var(--text-color-primary) !important;
+}
+
+.icon-menu {
+    font-size: 20px;
+}
+
+@media (max-width: 576px) {
+    .icon-menu {
+        display: none;
+    }
+}
+
+.dropend .dropdown-toggle::after {
+    display: none !important;
+}
+
+.bg-light {
+    background-color: var(--background) !important;
+}
+
+/* === Conteúdo principal ocupa a mesma altura do row === */
+.content-page {
+    background-color: var(--background) !important;
+    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.actions-page {
+    display: flex;
+}
+
+.frm-crud {
+    height: 100%;
+}
+
+.div-title-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.div-page-list,
+.div-page-crud {
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    height: calc(100vh - 120px);
+    overflow: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.icon-question {
+    color: cornflowerblue;
+    cursor: pointer;
+}
+
+/* =========================================================
+   ☑ Sidebar branca: força ícones, textos e chevrons em branco
+   ========================================================= */
+.sidebar .nav-link,
+.sidebar .nav-link i,
+.sidebar .nav-link .fa,
+.sidebar .nav-link .fas,
+.sidebar .nav-link .far,
+.sidebar .nav-link .fal,
+.sidebar .nav-link .fab,
+.text-hide-toggle-menu {
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+/* Botões dos grupos (collapse) não herdam azul do Bootstrap */
+.sidebar .nav-item button.nav-link {
+    --bs-link-color: #fff !important;
+    --bs-link-hover-color: #fff !important;
+    --bs-nav-link-color: #fff !important;
+    color: #fff !important;
+    background: transparent;
+    border: 0;
+}
+
+    /* Chevron (seta) dos grupos */
+    .sidebar .nav-item button.nav-link .fa-chevron-down {
+        color: #fff !important;
+    }
+
+/* Subitens dentro dos collapses */
+#menu .collapse .nav-link,
+#menu .collapse .nav-link i {
+    color: #fff !important;
+}
+
+/* Hover/active mantém branco com leve destaque de fundo */
+.sidebar .nav-link:hover,
+.sidebar .nav-link:focus {
+    color: #fff !important;
+    background-color: rgba(255,255,255,0.08);
+}
+
+.sidebar .nav-link.active {
+    color: #fff !important;
+    background-color: rgba(255,255,255,0.15);
+}
+
+/* Remove sublinhado e reforça cor de link branca */
+.sidebar a.nav-link {
+    --bs-link-color: #fff !important;
+    --bs-link-hover-color: #fff !important;
+    text-decoration: none;
+}
+
+/* =========================================================
+   ☑ Mostrar nomes ao expandir (desktop e smartphone)
+   ========================================================= */
+
+/* por padrão, esconda o texto (ícones apenas) */
+.sidebar .text-hide-toggle-menu {
+    display: none !important;
+    white-space: nowrap;
+}
+
+/* quando qualquer submenu abrir, aplicamos .sidebar-expanded via JS */
+.sidebar.sidebar-expanded {
+    width: 240px; /* antes 220px – acompanha o aumento da base */
+}
+
+    /* com a barra expandida, exibimos os rótulos */
+    .sidebar.sidebar-expanded .text-hide-toggle-menu {
+        display: inline !important;
+    }
+
+/* anima chevron ao abrir */
+.sidebar .nav-item button.nav-link .fa-chevron-down {
+    transition: transform .2s ease;
+}
+
+.sidebar .nav-item button[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* smartphone: a barra expandida vira um drawer largo */
+@media (max-width: 576px) {
+    .sidebar {
+        width: 56px; /* mais estreita no mobile */
+        padding-right: 2px;
+    }
+
+        .sidebar.sidebar-expanded {
+            width: 85vw; /* ocupa 85% da largura da tela */
+        }
+
+        .sidebar .nav-link {
+            padding-left: .5rem;
+            padding-right: .5rem;
+        }
+}

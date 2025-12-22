@@ -1,47 +1,179 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Core.Enumerators
+@using Core.Entity
+@{
+    // Recupera o nível de permissão injetado pelo middleware
+    // var level = Context?.Items?["PermissionLevel"] as PermissionLevel;
+
+    // bool Can(TpModule m)
+    //     => level?.Modules?.Any(x => x.TpModule == m && x.TpAccess != TpAccess.None) ?? false;
+
+    // // Caso queira exigir "Full" para algum item, use esta helper:
+    // bool CanFull(TpModule m)
+    //     => level?.Modules?.Any(x => x.TpModule == m && x.TpAccess == TpAccess.Full) ?? false;
+
+    // Exibe grupo se o usuário tiver acesso a pelo menos um dos módulos
+    // bool CanAny(params TpModule[] mods)
+    //     => mods?.Any(m => Can(m)) ?? false;
+}
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
+    <link rel="icon" type="image/webp" sizes="16x16" href="/img/icons/icon16.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/32x32.png">
+    <link rel="apple-touch-icon" sizes="58x58" href="/img/icons/icon-58.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/icons/icon-60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/icons/icon-72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/icons/icon-76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/icons/icon144.webp">
+    <link rel="apple-touch-icon" sizes="128x128" href="/img/icons/icon-128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/icon-180.png">
+    <link rel="icon" type="image/webp" sizes="96x96" href="/img/icons/icon96.webp">
+    <link rel="icon" type="image/webp" sizes="192x192" href="/img/icons/icon192.webp">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ddc7b1">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ddc7b1">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HPLFelixMecca</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HPLFelixMecca.styles.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>THR - Sistema de Embalagens</title>
+
+    @* ICONS *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    @* FONTS *@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+    @* CSS BOOTSTRAP *@
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    @* CSS DATATABLE *@
+    <link href="~/lib/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/2.1.8/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- Font Awesome (duplicado no original; mantido para compatibilidade) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+
+    @* CSS CUSTOM *@
+    <link href="~/css/common/theme.min.css" rel="stylesheet" />
+    <link href="~/css/common/layout.min.css" rel="stylesheet" />
+    <link href="~/css/common/form.css" rel="stylesheet" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Se os textos estiverem visíveis, colapsa (todas as páginas)
+      if ($('.text-hide-toggle-menu').hasClass('d-sm-inline')) {
+        layout.showHideTextSidebar();
+      }
+    });
+</script>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HPLFelixMecca</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                @* <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div> *@
+        <nav class="navbar fixed-top">
+            <div class="container-fluid d-flex align-items-center justify-content-between">
+                <a class="navbar-brand text-light-custom" href="#">
+                    <i onclick="layout.showHideTextSidebar()" class="fa-solid fa-bars icon-menu me-2"></i>
+                    HPLFelixMecca
+                </a>
+                <div class="d-flex align-items-center">
+                    
+                    <span class="me-2">@User.Identity?.Name</span>
+                    <a onclick="layout.showModalConfirmLogOut()" class="text-light-custom cursor-pointer">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div class="container-fluid content-main">
+        <div class="row flex-nowrap">
+            <div class="sidebar col-auto col-md-3 col-xl-2 p-0">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" id="menu">
+                        <!-- HOME -->
+                        <li class="nav-item">
+                            <a href="/Home" class="nav-link align-middle px-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Página Inicial">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="ms-1 d-none d-sm-inline text-hide-toggle-menu">Home</span>
+                            </a>
+                        </li>
+
+                        <li class="li-divisor"></li>
+
+                        
+                    </ul> 
+                </div>
+            </div>
+            <div class="col py-3 content-page">
+                @RenderBody()
+                <div class="modal fade" id="modal-confirm-logout" tabindex="-1" role="dialog" aria-labelledby="modal-confirm-logout" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header border-bottom-0">
+                                <div class="w-100 text-center">
+                                    <h5 class="modal-title">
+                                        <i class="fa-solid fa-triangle-exclamation" style="font-size: 5rem"></i>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p>Deseja realmente sair do sistema ?</p>
+                                <p>Confirma a operação?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="layout.confirmLogOut()" id="btn-confirm-logout" type="button" class="btn btn-custom btn-primary">Sim</button>
+                                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Não</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    @* <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - HPLFelixMecca - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- Modais auxiliares (inalterados) -->
+    <div class="modal fade" id="modal-on-off-whatsapp" tabindex="-1" role="dialog" aria-labelledby="modal-on-off-whatsapp" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <p id="txtTitleOnOffWhatsapp"></p>
+                    <p id="txtSubTitleOnOffWhatsapp"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-custom btn-primary" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
         </div>
-    </footer> *@
-
+    </div>
+    <div class="modal fade" id="spinnerModal" tabindex="-1" aria-labelledby="spinnerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto" id="title-toast"></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div id="description-toast" class="toast-body fw-bold">
+            </div>
+        </div>
+    </div>
 
     @* JQUERY *@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -83,6 +215,71 @@
         <script src="~/js/common/strings.min.js" asp-append-version="true"></script>
         <script src="~/js/common/notify-gr.min.js" asp-append-version="true"></script>
     </environment>
+
+    @* <script>
+        const msgError = "@ViewBag.ErrorMessage";
+        if (msgError) {
+            userAlert("Atenção", msgError, "danger");
+        }
+
+        // === Expansão automática da sidebar quando abre submenu ===
+        (function () {
+            const sidebar = document.querySelector('.sidebar');
+            const collapses = document.querySelectorAll('#menu .collapse');
+
+            collapses.forEach(c => {
+                c.addEventListener('show.bs.collapse', () => {
+                    sidebar.classList.add('sidebar-expanded');
+                });
+                c.addEventListener('hide.bs.collapse', () => {
+                    setTimeout(() => {
+                        const anyOpen = document.querySelector('#menu .collapse.show') !== null;
+                        if (!anyOpen) sidebar.classList.remove('sidebar-expanded');
+                    }, 200);
+                });
+            });
+
+            // Se já houver um submenu aberto (rota ativa), expande no load
+            document.addEventListener('DOMContentLoaded', () => {
+                if (document.querySelector('#menu .collapse.show')) {
+                    sidebar.classList.add('sidebar-expanded');
+                }
+            });
+        })();
+    </script> *@
+
+    <script>
+        // === Expansão automática da sidebar (submenu + botão hambúrguer) ===
+        (function () {
+            const sidebar   = document.querySelector('.sidebar');
+            const collapses = document.querySelectorAll('#menu .collapse');
+
+            function syncSidebarWidth() {
+                const anyOpenSubmenu = document.querySelector('#menu .collapse.show') !== null;
+                const textsVisible   = $('.text-hide-toggle-menu').hasClass('d-sm-inline');
+
+                // Expande se houver submenu aberto OU se o usuário pediu textos visíveis
+                if (anyOpenSubmenu || textsVisible) {
+                    sidebar.classList.add('sidebar-expanded');
+                } else {
+                    sidebar.classList.remove('sidebar-expanded');
+                }
+            }
+
+            // Eventos do Bootstrap (quando terminar de abrir/fechar)
+            collapses.forEach(c => {
+                c.addEventListener('shown.bs.collapse',  syncSidebarWidth);
+                c.addEventListener('hidden.bs.collapse', syncSidebarWidth);
+            });
+
+            // Evento disparado pela função layout.showHideTextSidebar()
+            document.addEventListener('thr:syncSidebar', syncSidebarWidth);
+
+            // No load da página garante estado correto
+            document.addEventListener('DOMContentLoaded', syncSidebarWidth);
+        })();
+    </script>
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

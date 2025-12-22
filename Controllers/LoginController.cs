@@ -12,10 +12,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 //using Util.Extensions;
 using Util.Helpers;
-//using WebApp.Adm.Middlewares;
-//using WebApp.Adm.VO;
+using HPLFelixMecca.Middlewares;
+//using HPLFelixMecca.VO;
 
-namespace WebApp.Adm.Controllers
+namespace HPLFelixMecca.Controllers
 {
     public class LoginController : ControllerBaseCore
     {
@@ -42,14 +42,14 @@ namespace WebApp.Adm.Controllers
                     return View(nameof(Index), loginVM);
                 }
 
-                if ((string.IsNullOrEmpty(loginVM.UserName) || (string.IsNullOrEmpty(loginVM.Password))))
+                if ((string.IsNullOrEmpty(loginVM.Name) || (string.IsNullOrEmpty(loginVM.Password))))
                 {
                     loginVM.ErrorMsg = CommonMessageConstant.ErrorMethodParamIsInvalid;
                     return View(nameof(Index), loginVM);
                 }
 
                 var user = await _userRepository
-                    .GetByLoginAsync(loginVM.UserName, loginVM.PassordEncrypt);
+                    .GetByLoginAsync(loginVM.Name, loginVM.PassordEncrypt);
                 if (user == null)
                 {
                     loginVM.ErrorMsg = LoginMessageConstant.UserAndPassordInvalid;
@@ -57,7 +57,10 @@ namespace WebApp.Adm.Controllers
                 }
                 //checar se pode acessar ou somente visualizar
 
+                var token = TokenService.GenerateToken(user);
+                CookieToken.Add(HttpContext, token.AccessToken);
                 return RedirectToAction("Index", "Home");
+
             }
             catch (Exception ex)
             {

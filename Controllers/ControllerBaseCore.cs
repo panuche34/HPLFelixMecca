@@ -1,7 +1,7 @@
 ﻿using Application.Security;
 //using Core.BO;
 using Core.Entity;
-//using Core.Enumerators;
+using Core.Enumerators;
 using Core.ViewModel;
 //using Infrastructure.Intefaces;
 using Infrastructure.Persistence;
@@ -11,9 +11,7 @@ using System.Security.Claims;
 public class ControllerBaseCore : Controller
 {
     protected readonly IWebHostEnvironment _webHostEnvironment;
-    protected readonly string _basePath;
-    //protected readonly AppSettingsAppVM _appSettings;
-   
+    protected readonly string _basePath;   
 
 
     public ControllerBaseCore() { _basePath = string.Empty; }
@@ -27,7 +25,6 @@ public class ControllerBaseCore : Controller
     public ControllerBaseCore(IConfiguration configuration, IWebHostEnvironment env) : this()
     {
         _basePath = env.WebRootPath;
-        //_appSettings = configuration.GetSection("Config").Get<AppSettingsAppVM>();
     }
 
     public async Task<string> GetPathFoto(string locale, string id)
@@ -40,28 +37,6 @@ public class ControllerBaseCore : Controller
 
         var url = $"../../attachments/{locale}/{id}/{System.IO.Path.GetFileName(filesName[0])}";
         return url;
-    }
-
-    public async Task SaveFoto(string locale, string id, IFormFile foto)
-    {
-        var path = GetFormatDirectory(locale, id);
-        if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-
-        if (locale != "operacao") DeleteAllFiles(path);
-
-        path = Path.Combine(path, foto.FileName);
-        using var stream = new FileStream(path, FileMode.Create);
-        foto.CopyTo(stream);
-    }
-
-    private bool DeleteAllFiles(string path)
-    {
-        if (!Directory.Exists(path)) return true;
-        var filesName = Directory.GetFiles(path);
-        if (filesName == null || filesName.Length <= 0) return true;
-
-        foreach (var file in filesName) System.IO.File.Delete(file);
-        return true;
     }
 
     // >>> TORNAR PROTECTED
@@ -96,6 +71,29 @@ public class ControllerBaseCore : Controller
         }
         return urls;
     }
+
+    // ====================== HELPERS PRIVADOS ======================
+    protected async Task<bool> HasViewAccessAsync(long permissionLevelId, TpModule module)
+    {
+        var repo = HttpContext?.RequestServices?.GetService<IPermissionLevelRepository>();
+        if (repo == null) throw new InvalidOperationException("IPermissionLevelRepository não registrado no DI.");
+        return await repo.HasViewAccessAsync(permissionLevelId, module);
+    }
+
+    private long? GetPermissionLevelIdFromClaims()
+    {
+        var claimValue = User.FindFirstValue(TokenService.ClaimAccess);
+        if (string.IsNullOrWhiteSpace(claimValue)) return null;
+        return long.TryParse(claimValue, out var id) ? id : null;
+    }
+
+    public async Task<bool> GetCanViewAsync(TpModule tpModule)
+    {
+        var permissionLevelId = GetPermissionLevelIdFromClaims();
+        if (!permissionLevelId.HasValue) return false;
+        return await HasViewAccessAsync(permissionLevelId.Value, tpModule);
+    }
+
 
 
 }

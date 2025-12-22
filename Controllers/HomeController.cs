@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using Core.Enumerators;
 using Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using HPLFelixMecca.Controllers;
 
 namespace HPLFelixMecca.Controllers
 {
@@ -13,11 +15,16 @@ namespace HPLFelixMecca.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var canView = await GetCanViewAsync(TpModule.Sectors);
+
+            ViewBag.CanView = canView;
+
             return View();
         }
 
+        
         public IActionResult Privacy()
         {
             return View();

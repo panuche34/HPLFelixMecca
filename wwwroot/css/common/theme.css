@@ -1,0 +1,13 @@
+﻿:root {
+    --primary: #0E3162;/* #053855;*/
+    --tertiary: #97c4ff;
+    --secondary: #DC3545;
+    --background: #dcdcdc;
+    --gray: #4d4c4c;
+    --light-gray: #adadad;
+    --dark: #1F2C32;
+    --text-color-primary: #dcdcdc;
+    --text-color-secondary: #fff;
+    --primary-rgba: rgba(5,56,85, 0.8);
+    --font-family: "Nunito Sans", sans-serif;
+}

@@ -394,7 +394,6 @@ E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\HPLFelixMecca.sourcelink.json
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\rjimswa.dswa.cache.json
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
-E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\scopedcss\bundle\HPLFelixMecca.styles.css
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\scopedcss\projectbundle\HPLFelixMecca.bundle.scp.css
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\staticwebassets.build.json
@@ -408,3 +407,4 @@ E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\refint\HPLFelixMecca.dll
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\HPLFelixMecca.pdb
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\HPLFelixMecca.genruntimeconfig.cache
 E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\ref\HPLFelixMecca.dll
+E:\Projetos\HPLFelixMecca\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout_old.cshtml.rz.scp.css
