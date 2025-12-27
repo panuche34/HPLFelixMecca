@@ -6,7 +6,7 @@ using HPLFelixMecca.Controllers;
 
 namespace HPLFelixMecca.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBaseCore
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -17,7 +17,7 @@ namespace HPLFelixMecca.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var canView = await GetCanViewAsync(TpModule.Sectors);
+            var canView = await GetCanViewAsync(model.);
 
             ViewBag.CanView = canView;
 

@@ -11,7 +11,7 @@ using System.Security.Claims;
 public class ControllerBaseCore : Controller
 {
     protected readonly IWebHostEnvironment _webHostEnvironment;
-    protected readonly string _basePath;   
+    protected readonly string _basePath;
 
 
     public ControllerBaseCore() { _basePath = string.Empty; }
@@ -73,12 +73,12 @@ public class ControllerBaseCore : Controller
     }
 
     // ====================== HELPERS PRIVADOS ======================
-    protected async Task<bool> HasViewAccessAsync(long permissionLevelId, TpModule module)
-    {
-        var repo = HttpContext?.RequestServices?.GetService<IPermissionLevelRepository>();
-        if (repo == null) throw new InvalidOperationException("IPermissionLevelRepository não registrado no DI.");
-        return await repo.HasViewAccessAsync(permissionLevelId, module);
-    }
+    //protected async Task<bool> HasViewAccessAsync(long permissionLevelId, TpModule module)
+    //{
+    //    var repo = HttpContext?.RequestServices?.GetService<IPermissionLevelRepository>();
+    //    if (repo == null) throw new InvalidOperationException("IPermissionLevelRepository não registrado no DI.");
+    //    return await repo.HasViewAccessAsync(permissionLevelId, module);
+    //}
 
     private long? GetPermissionLevelIdFromClaims()
     {
@@ -87,13 +87,17 @@ public class ControllerBaseCore : Controller
         return long.TryParse(claimValue, out var id) ? id : null;
     }
 
-    public async Task<bool> GetCanViewAsync(TpModule tpModule)
+    public async Task<bool> GetCanViewAsync(long Access)
     {
         var permissionLevelId = GetPermissionLevelIdFromClaims();
-        if (!permissionLevelId.HasValue) return false;
-        return await HasViewAccessAsync(permissionLevelId.Value, tpModule);
+        if (permissionLevelId == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
     }
-
-
-
 }
